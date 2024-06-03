@@ -33,7 +33,7 @@ ax.set_xlabel("Type of defect")
 ax.set_ylabel("Count")
 ax.set_title("Joshua's Histogram")
 ax.set_xticks([r + bar_width * (len(labels) / 2) for r in range(len(classes))])
-ax.set_xticklabels(classes)
+ax.set_xticklabels([f'Class {cls}' for cls in classes])
 ax.legend()
 
 plt.show()
