@@ -19,15 +19,19 @@ for cls in classes:
         for key in item:
             values[key].append(item[key])
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(15, 6))
 
-bar_width = 0.1
+bar_width = 0.135
 
 r = range(len(classes))
 positions = {label: [x + i * bar_width for x in r] for i, label in enumerate(labels)}
 
 for label in labels:
-    ax.bar(positions[label], values[label], width=bar_width, label=label)
+    bars = ax.bar(positions[label], values[label], width=bar_width, label=label)
+    for bar, value in zip(bars, values[label]):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.5, str(value),
+                ha='center', va='bottom', fontsize=9)
+
 
 ax.set_xlabel("Type of defect")
 ax.set_ylabel("Count")
@@ -37,3 +41,4 @@ ax.set_xticklabels([f'Class {cls}' for cls in classes])
 ax.legend()
 
 plt.show()
+
